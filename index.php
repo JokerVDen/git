@@ -12,5 +12,7 @@ $controller = new ProductController($productService);
 $response = $controller->index();
 
 system('clear');
+
 var_dump($response);
+
 echo PHP_EOL;
