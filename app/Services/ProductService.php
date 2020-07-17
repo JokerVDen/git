@@ -11,7 +11,7 @@ class ProductService
     /**
      * @var Repository
      */
-    private Repository $repository;
+    private $repository;
 
     public function __construct(Repository $repository)
     {
@@ -21,7 +21,13 @@ class ProductService
     public function getProductList()
     {
         $products = $this->repository->all();
+        $discountedProducts = [];
 
-        return $products;
+        foreach ($products as $key => $product) {
+            $product['price'] *= 0.85;
+            $discountedProducts[] = $product;
+        }
+
+        return $discountedProducts;
     }
 }
