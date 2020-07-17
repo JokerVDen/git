@@ -26,10 +26,13 @@ class ProductService
         $discount = 15;
 
         foreach ($products as $key => $product) {
+
             if ($user['type'] == UserType::VipClient) {
                 $products[$key]['price'] = $discount > 5
                     ? $products[$key]['price'] * (100 - $discount) / 100
                     : $products[$key]['price'] * (100 - 5) / 100;
+            } else {
+                $products[$key]['price'] *= (100 - $discount) / 100;
             }
         }
 

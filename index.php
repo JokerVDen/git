@@ -12,7 +12,7 @@ $productService = new ProductService(new ProductRepository());
 $controller = new ProductController($productService);
 
 $userRepository = new UserRepository;
-$user = $userRepository->one(UserType::Client);
+$user = $userRepository->one(UserType::VipClient);
 
 $response = $controller->index($user);
 
