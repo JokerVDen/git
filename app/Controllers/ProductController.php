@@ -21,9 +21,9 @@ class ProductController
     /**
      * @return array
      */
-    public function index()
+    public function index(array $user)
     {
-        $products = $this->service->getProductList();
+        $products = $this->service->getProductList($user);
 
         return $products;
     }

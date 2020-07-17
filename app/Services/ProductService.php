@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Enums\User\UserType;
 use App\Repositories\Repository;
 
 class ProductService
@@ -18,9 +19,18 @@ class ProductService
         $this->repository = $repository;
     }
 
-    public function getProductList()
+    public function getProductList(array $user)
     {
+        $discount = 0;
+
         $products = $this->repository->all();
+        foreach ($products as $key => $product) {
+            if ($user['type'] == UserType::VipClient) {
+                $products[$key]['price'] = $discount > 5
+                    ? $products[$key]['price'] * (100 - $discount) / 100
+                    : $products[$key]['price'] * (100 - 5) / 100;
+            }
+        }
 
         return $products;
     }

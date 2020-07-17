@@ -1,7 +1,9 @@
 <?php
 
 use App\Controllers\ProductController;
+use App\Enums\User\UserType;
 use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use App\Services\ProductService;
 
 require_once './vendor/autoload.php';
@@ -9,7 +11,10 @@ require_once './vendor/autoload.php';
 $productService = new ProductService(new ProductRepository());
 $controller = new ProductController($productService);
 
-$response = $controller->index();
+$userRepository = new UserRepository;
+$user = $userRepository->one(UserType::Client);
+
+$response = $controller->index($user);
 
 system('clear');
 
