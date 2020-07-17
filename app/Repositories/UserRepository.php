@@ -12,7 +12,7 @@ class UserRepository implements Repository
     /**
      * @var array|array[]
      */
-    private array $users = [
+    private $users = [
         UserType::Manager => [
             'type' => UserType::Manager,
             'name' => 'Главный менеджер',

@@ -9,7 +9,7 @@ class ProductRepository implements Repository
     /**
      * @var array|array[]
      */
-    private array $products = [
+    private $products = [
         1 => [
             'id'    => 1,
             'name'  => 'Рубашка',

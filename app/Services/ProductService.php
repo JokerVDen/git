@@ -12,7 +12,7 @@ class ProductService
     /**
      * @var Repository
      */
-    private Repository $repository;
+    private $repository;
 
     public function __construct(Repository $repository)
     {
@@ -21,9 +21,10 @@ class ProductService
 
     public function getProductList(array $user)
     {
-        $discount = 0;
-
         $products = $this->repository->all();
+
+        $discount = 15;
+
         foreach ($products as $key => $product) {
             if ($user['type'] == UserType::VipClient) {
                 $products[$key]['price'] = $discount > 5
